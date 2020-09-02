@@ -12,15 +12,18 @@ public class Encoder {
 //make table that has the list of string and their value
 	Hashtable<String, int> table = new Hashtable<String, int>();
 	
-	//read in file to code
+	//make file reader
 	BufferedReader br = new BufferedReader(new FileReader(file));
-<<<<<<< HEAD
+
 	
 	public void encode ()
 	{
-while (br.ready) {
-		
-	}
+		//read in file to code
+		while (br.ready) 
+		{
+			br.read();
+		}
+		br.close();
 	}
 
 	
