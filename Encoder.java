@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 	3. reset to only include what we have not output a code for
 
  */
-public class Encoder {
+public class Encoder (String inputFileName){
 	
 //make table that has the list of string and their value
 	Hashtable<String, int> table = new Hashtable<String, int>();
