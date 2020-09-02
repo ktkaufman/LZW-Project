@@ -9,7 +9,7 @@ import java.io.BufferedReader;
  */
 public class Encoder {
 	
-//make arraylist that is table of values
+//make 2D arraylist that is table of values
 	Arraylist<String> table = new ArrayList();
 	
 	//read in file to code
@@ -17,5 +17,6 @@ public class Encoder {
 	while (br.ready) {
 		
 	}
+	
 	
 }
