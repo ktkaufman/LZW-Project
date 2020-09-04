@@ -12,15 +12,19 @@ public class Encoder (String inputFileName){
 //make table that has the list of string and their value
 	Hashtable<String, int> table = new Hashtable<String, int>();
 	
-	//make array of Strings
 	
 	//make file reader
 	BufferedReader br = new BufferedReader(new FileReader(file));
 
+	//make table and input a-z
+	
+	//make array of strings (input), each character has an index
+	
+	
 	
 	public void encodeFile ()
 	{
-		//read in file to code and add to 
+		//read in file to code and add to input
 		while (br.ready) 
 		{
 			br.read();
