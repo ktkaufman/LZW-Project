@@ -18,12 +18,16 @@ public class Encoder (String inputFileName){
 
 	//make table and input a-z
 	
-	//make array of strings (input), each character has an index
-	
+	//make an array (input), each character has an index
 	
 	
 	public void encodeFile ()
 	{
+		for (i=0; i<26; i++)
+		{
+			table.put(""+ (char)(i+97), i)
+		}
+		
 		//read in file to code and add to input
 		while (br.ready) 
 		{
@@ -31,6 +35,7 @@ public class Encoder (String inputFileName){
 		}
 		//save
 		br.close();
+		
 	}
 	
 
