@@ -30,9 +30,16 @@ public class Encoder (String inputFileName){
 		
 		String read = ""; // String that you take in
 		
+		
 		//read in file to code and add to input
 		while (br.ready) 
 		{
+			read = ""+br.read();
+			if (table.containsKey(read))
+			{
+				table.put(read, table.size)
+			}
+			table.put (""+br.read(), counter)
 			br.read();
 		}
 		//save
