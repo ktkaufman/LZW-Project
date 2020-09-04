@@ -12,19 +12,23 @@ public class Encoder (String inputFileName){
 //make table that has the list of string and their value
 	Hashtable<String, int> table = new Hashtable<String, int>();
 	
+	//make array of Strings
+	
 	//make file reader
 	BufferedReader br = new BufferedReader(new FileReader(file));
 
 	
-	public void encode ()
+	public void encodeFile ()
 	{
-		//read in file to code
+		//read in file to code and add to 
 		while (br.ready) 
 		{
 			br.read();
 		}
+		//save
 		br.close();
 	}
+	
 
 	
 	
