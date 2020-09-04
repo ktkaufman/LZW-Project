@@ -36,7 +36,7 @@ public class Encoder (String inputFileName){
 
 
 	//make file reader
-	BufferedReader br = new BufferedReader(new FileReader(file));
+	BufferedReader br = new BufferedReader(new FileReader(inputFileName));
 
 	//make table and input a-z
 
