@@ -56,13 +56,16 @@ public class Encoder (String inputFileName){
 		//read in file to code and add to input
 		while (br.ready) 
 		{
-			read = ""+br.read();
-			if (table.containsKey(read))
+			read = ""+br.read(); // temp var
+			while (!table.containsKey(read)) // read through until you hit a new sequence
+			{
+				read = read + (char) br.read();
+			}
+			if (table.containsKey(read)) //puts that sequence into table
 			{
 				table.put(read, table.size)
 			}
-			table.put (""+br.read(), counter)
-			br.read();
+			read = ""+ charAt(read.length-1);
 		}
 		//save
 		br.close();
