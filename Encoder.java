@@ -7,29 +7,32 @@ import java.io.BufferedReader;
 	3. reset to only include what we have not output a code for
 
  */
-public class Encode {
+public class Encoder {
 	//build the list/table, acts like a dictionary
 	public static List <Integer> compressed (String uncompressed) {
 
 
 		//make table that has the list of string and their value
 		Hashtable<String, int> table = new Hashtable<String, int>();
-		
+
 		//make file reader
 		BufferedReader br = new BufferedReader(new FileReader(uncompressed));
-		
+
 		//read in file to code
 		int counter = 0;
+
 		while (br.ready) 
 		{
 			table.put (""+br.read(), counter);
+			//make table and input a-z
+
+			//make array of strings (input), each character has an index
+
 
 		}
+		//save
 		br.close();
 	}
-
-
-
 
 
 }
