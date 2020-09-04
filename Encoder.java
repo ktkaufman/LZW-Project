@@ -36,7 +36,7 @@ public class Encoder (String inputFileName){
 
 
 	//make file reader
-	BufferedReader br = new BufferedReader(new FileReader(file));
+	BufferedReader br = new BufferedReader(new FileReader(inputFileName));
 
 	//make table and input a-z
 
@@ -57,10 +57,15 @@ public class Encoder (String inputFileName){
 		while (br.ready) 
 		{
 			read = ""+br.read();
-			if (table.containsKey(read))
+			while (!table.containsKey(read)) // read through until you hit a new sequence
+			{
+				read = br.read();
+			}
+			if (table.containsKey(read)) //check to see if the table has that
 			{
 				table.put(read, table.size)
 			}
+			
 			table.put (""+br.read(), counter)
 			br.read();
 		}
