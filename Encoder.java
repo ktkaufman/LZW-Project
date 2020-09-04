@@ -28,6 +28,8 @@ public class Encoder (String inputFileName){
 			table.put(""+ (char)(i+97), i)
 		}
 		
+		String read = ""; // String that you take in
+		
 		//read in file to code and add to input
 		while (br.ready) 
 		{
