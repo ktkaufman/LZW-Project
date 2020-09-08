@@ -47,14 +47,14 @@ public class Encoder (String inputFileName){
 	{
 		for (i=0; i<26; i++)
 		{
-			table.put(""+ (char)(i+97), i)
+			table.put(""+ (char)(i+97), i) //inputs values into table
 		}
 
 		String read = ""; // String that you take in
 
 
-		//read in file to code and add to input
-		while (br.ready) 
+		
+		while (br.ready) //read in file to code and add to input
 		{
 			read = ""+br.read(); // temp var
 			while (table.containsKey(read)) // read through until you hit a new sequence
