@@ -57,16 +57,17 @@ public class Encoder (String inputFileName){
 		while (br.ready) 
 		{
 			read = ""+br.read(); // temp var
-			while (!table.containsKey(read)) // read through until you hit a new sequence
+			while (table.containsKey(read)) // read through until you hit a new sequence
 			{
 				read = read + (char) br.read();
 			}
-			if (table.containsKey(read)) //puts that sequence into table
+			if (!table.containsKey(read)) //puts that sequence into table
 			{
 				table.put(read, table.size)
 			}
-			read = ""+ charAt(read.length-1);
+			read = ""+ charAt(read.length-1); //resets with only last char of former sequence
 		}
+		
 		//save
 		br.close();
 
