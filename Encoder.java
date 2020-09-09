@@ -52,20 +52,24 @@ public class Encoder (String inputFileName){
 
 		String read = ""; // String that you take in
 
-
+		
 		
 		while (br.ready) //read in file to code and add to input
 		{
+			temp = 0;
 			read = ""+br.read(); // temp var
-			while (table.containsKey(read)) // read through until you hit a new sequence
+			while (temp =0) // read through until you hit a new sequence
 			{
 				read = read + (char) br.read();
+				
+				if (!table.containsKey(read)) //puts that sequence into table
+				{
+					table.put(read, table.size)
+					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
+				}
+				
 			}
-			if (!table.containsKey(read)) //puts that sequence into table
-			{
-				table.put(read, table.size)
-			}
-			read = ""+ charAt(read.length-1); //resets with only last char of former sequence
+			
 		}
 		
 		//save
