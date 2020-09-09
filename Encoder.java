@@ -24,10 +24,6 @@ public class Encoder (String inputFileName){
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
-	//make table and input a-z
-
-	//make an array (input), each character has an index
-
 
 	public void encodeFile ()
 	{
@@ -38,7 +34,6 @@ public class Encoder (String inputFileName){
 
 		String read = ""; // String that you take in
 
-		read = "";
 		
 		while (br.ready) //read in file to code and add to input
 		{
@@ -52,7 +47,6 @@ public class Encoder (String inputFileName){
 					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
 					
 				}
-			
 			
 		}
 		
