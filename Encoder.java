@@ -10,26 +10,6 @@ import java.io.BufferedReader;
 	3. reset to only include what we have not output a code for
 
  */
-//public class Encoder {
-//	//build the list/table, acts like a dictionary
-//	public static List <Integer> compressed (String uncompressed) {
-//
-//
-//		//make table that has the list of string and their value
-//		Hashtable<String, int> table = new Hashtable<String, int>();
-//
-//		//make file reader
-//		BufferedReader br = new BufferedReader(new FileReader(uncompressed));
-//
-//		//read in file to code
-//		int counter = 0;
-//
-//		while (br.ready) 
-//		{
-//			table.put (""+br.read(), counter);
-//			//make table and input a-z
-//
-//			//make array of strings (input), each character has an index
 
 
 public class Encoder (String inputFileName){
@@ -63,17 +43,15 @@ public class Encoder (String inputFileName){
 		while (br.ready) //read in file to code and add to input
 		{
 
-				read = read + (char) br.read();
+				read = read + (char) br.read(); //reads in one char
 				
-				if (!table.containsKey(read)) //puts that sequence into table
+				if (!table.containsKey(read)) //if read is not in table, it adds it to the table
 				{
-					table.put(read, table.size)
-					code.add (table.getKey(read.substring(0,read.length()-2))); //adds sequence to code
+					table.put(read, table.size) 
+					code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
 					
 				}
-				
-				
 			
 			
 		}
@@ -82,6 +60,7 @@ public class Encoder (String inputFileName){
 		br.close();
 
 	}
+	
 
 
 }
