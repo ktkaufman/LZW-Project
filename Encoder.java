@@ -12,10 +12,12 @@ import java.io.BufferedReader;
  */
 
 
-public class Encoder (String inputFileName){
+public class Encoder {
+	
+public Encoder (String inputFileName) {
 
 	//make table that has the list of string and their value
-	Hashtable<String, int> table = new Hashtable<String, int>();
+	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
 
 
 	//make file reader
@@ -42,9 +44,9 @@ public class Encoder (String inputFileName){
 				
 				if (!table.containsKey(read)) //if read is not in table, it adds it to the table
 				{
-					table.put(read, table.size) 
+					table.put(read, table.size);
 					code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
-					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
+					read = ""+ read.charAt(read.length()-1); //resets with only last char of former sequence
 					
 				}
 			
@@ -62,4 +64,5 @@ public class Encoder (String inputFileName){
 		}
 		return sb;
 
+}
 }
