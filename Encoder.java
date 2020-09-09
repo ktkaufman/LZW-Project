@@ -1,8 +1,13 @@
 import java.util.*;
 
 import com.sun.org.apache.bcel.internal.classfile.Code;
-
 import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  *	1. read the text until we find. pattern that is not in our table
@@ -15,7 +20,7 @@ import java.io.BufferedReader;
 public class Encoder (String inputFileName){
 
 	//make table that has the list of string and their value
-	Hashtable<String, int> table = new Hashtable<String, int>();
+	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
 
 
 	//make file reader
@@ -27,7 +32,7 @@ public class Encoder (String inputFileName){
 
 	public void encodeFile ()
 	{
-		for (i=0; i<94; i++)
+		for (int i=0; i<94; i++)
 		{
 			table.put(""+ (char)(i+33), i) //inputs values into table
 		}
@@ -35,7 +40,7 @@ public class Encoder (String inputFileName){
 		String read = ""; // String that you take in
 
 		
-		while (br.ready) //read in file to code and add to input
+		while (br.ready()) //read in file to code and add to input
 		{
 
 				read = read + (char) br.read(); //reads in one char
