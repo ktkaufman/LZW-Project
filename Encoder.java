@@ -24,8 +24,6 @@ public class Encoder
 	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
 
 
-	//make file reader
-	BufferedReader br = new BufferedReader(new FileReader(inputFileName));
 	
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
@@ -33,6 +31,9 @@ public class Encoder
 
 	public void encodeFile (String inputFileName)
 	{
+		//make file reader
+		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
+	
 		for (int i=0; i<94; i++)
 		{
 			table.put(""+ (char)(i+33), i); //inputs values into table
