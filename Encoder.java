@@ -37,6 +37,9 @@ public class Encoder (String inputFileName){
 
 	//make file reader
 	BufferedReader br = new BufferedReader(new FileReader(inputFileName));
+	
+	//makes arrayList that stores LZW code
+	ArrayList<Integer> code = new ArrayList<Integer>();
 
 	//make table and input a-z
 
@@ -65,8 +68,11 @@ public class Encoder (String inputFileName){
 				if (!table.containsKey(read)) //puts that sequence into table
 				{
 					table.put(read, table.size)
+					code.add (table.size);
 					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
+					
 				}
+				
 				
 			}
 			
