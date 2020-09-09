@@ -23,13 +23,12 @@ public class Encoder
 	//make table that has the list of string and their value
 	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
 
-
 	
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
 
-	public void encodeFile (String inputFileName)
+	public Encoder (String inputFileName)
 	{
 		//make file reader
 		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
@@ -49,7 +48,7 @@ public class Encoder
 				
 				if (!table.containsKey(read)) //if read is not in table, it adds it to the table
 				{
-					table.put(read, table.size) 
+					table.put(read, table.size());
 					code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
 					
@@ -69,4 +68,5 @@ public class Encoder
 		}
 		return sb;
 
+}
 }
