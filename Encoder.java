@@ -24,14 +24,12 @@ public class Encoder
 	//make table that has the list of string and their value
 	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
 
-
 	
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
 
-	public void encodeFile (String inputFileName)
-	
+	public Encoder (String inputFileName)
 	{
 		//make file reader
 		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
