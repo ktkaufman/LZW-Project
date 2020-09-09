@@ -55,6 +55,11 @@ public class Encoder (String inputFileName){
 
 	}
 	
-
+	public String output () {
+		StringBuffer sb = new StringBuffer ("");
+		for (int key = 0; key < table.length(); key++) {
+			sb.append(table.get(key));
+		}
+		return sb;
 
 }
