@@ -27,9 +27,9 @@ public class Encoder (String inputFileName){
 
 	public void encodeFile ()
 	{
-		for (i=0; i<26; i++)
+		for (i=0; i<94; i++)
 		{
-			table.put(""+ (char)(i+97), i) //inputs values into table
+			table.put(""+ (char)(i+33), i) //inputs values into table
 		}
 
 		String read = ""; // String that you take in
