@@ -34,7 +34,7 @@ public class Encoder (String inputFileName){
 	{
 		for (int i=0; i<94; i++)
 		{
-			table.put(""+ (char)(i+33), i) //inputs values into table
+			table.put(""+ (char)(i+33), i); //inputs values into table
 		}
 
 		String read = ""; // String that you take in
