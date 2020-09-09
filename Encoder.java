@@ -68,7 +68,7 @@ public class Encoder (String inputFileName){
 				if (!table.containsKey(read)) //puts that sequence into table
 				{
 					table.put(read, table.size)
-					code.add (table.size); //adds sequence to code
+					code.add (table.getKey(read.substring(0,read.length()-2))); //adds sequence to code
 					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
 					
 				}
