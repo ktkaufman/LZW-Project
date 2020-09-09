@@ -17,7 +17,7 @@ import java.util.Hashtable;
  */
 
 
-public class LZWEncoder
+public class Encoder
 
 {
 
