@@ -17,7 +17,8 @@ import java.util.Hashtable;
  */
 
 
-public class Encoder (String inputFileName){
+public class Encoder
+{
 
 	//make table that has the list of string and their value
 	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
@@ -30,7 +31,7 @@ public class Encoder (String inputFileName){
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
 
-	public void encodeFile ()
+	public void encodeFile (String inputFileName)
 	{
 		for (int i=0; i<94; i++)
 		{
