@@ -1,6 +1,5 @@
 import java.util.*;
 
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
+
 
 /**
  *	1. read the text until we find. pattern that is not in our table
@@ -18,6 +18,7 @@ import java.util.Hashtable;
 
 
 public class Encoder
+
 {
 
 	//make table that has the list of string and their value
@@ -51,7 +52,7 @@ public class Encoder
 					table.put(read, table.size());
 					code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 					read = ""+ charAt(read.length-1); //resets with only last char of former sequence
-					
+	
 				}
 			
 		}
@@ -63,7 +64,7 @@ public class Encoder
 	
 	public String output () {
 		StringBuffer sb = new StringBuffer ("");
-		for (int key = 0; key < table.length(); key++) {
+		for (int key = 0; key < table.size(); key++) {
 			sb.append(table.get(key));
 		}
 		return sb;
