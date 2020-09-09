@@ -51,7 +51,7 @@ public class Encoder
 				
 				if (!table.containsKey(read)) //if read is not in table, it adds it to the table
 				{
-					table.put(read, table.size()) 
+					table.put(read, table.size());
 					code.add (table.keys(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 					read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
 					
@@ -69,6 +69,7 @@ public class Encoder
 		for (int key = 0; key < table.size(); key++) {
 			sb.append(table.get(key));
 		}
-		return sb;
+		return sb.toString();
 
+}
 }
