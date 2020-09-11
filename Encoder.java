@@ -25,9 +25,9 @@ public class Encoder
 	//makes arrayList that stores LZW code
 	private ArrayList<Integer> code = new ArrayList<Integer>();
 
-	private String s = ""; 
+	private String prefix = ""; 
 	private String pattern = "";
-	private char c = 0; //this will represent the last char when checking a substring
+	private char readchar = 0; //this will represent the last char when checking a substring
 
 	//empty constructor
 	public Encoder () 
@@ -54,32 +54,42 @@ public class Encoder
 			while (br.ready()) //read in file to code and add to input
 			{
 
-				c = (char) br.read(); //reads in one char
-				pattern = s + c; //adds the char onto what has been read so far
+				readchar = (char) br.read(); //reads in one char
+				pattern = prefix + readchar; //adds the char onto what has been read so far
 
 
-				//if (table.indexOf(pattern) >= 0 || pattern.length()==1) {
-					//s = pattern;
-					//code.add((int)c);
+				if (table.contains(pattern) || pattern.length()==1) {
+					prefix = pattern;
+					code.add((int)readchar);
 				}
 
 				else {
-					if ((int)pattern.charAt(0) <= 127) { //checks if it is already in the ascii table
+					if (prefix.length()==1) { //checks if it is in ascii table as a single letter
 						code.add((int)pattern.charAt(0)); //adds the index to the list of codes
-						writer.print((int)pattern.charAt(0)); //prints the code of this pattern
+						writer.print((int)pattern.charAt(0) + ","); //prints the code of this pattern
 					}
 
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
 					{
-						code.add (table.indexOf(s)); //adds value of everything but last letter to code
-						writer.print(128+table.indexOf(s)); //prints the code of this pattern
+						code.add (33+table.indexOf(prefix)); //adds value of everything but last letter to code
+						writer.print(33+table.indexOf(prefix) +","); //prints the code of this pattern
 					}
+					
+					prefix = "" + readchar; // resets with only the last char of the sequence
 					table.add(pattern);
-					s = "" + c; // resets with only the last char of the sequence
 				}
 				
+				
 			}
-
+			//when you reach the end
+			if (prefix.length() == 1)
+			{
+				writer.print((int)prefix.charAt(0) );
+			}
+			else
+			{
+				writer.print(128+table.indexOf(prefix));
+			}
 			//save
 			br.close();
 			writer.close();
@@ -92,4 +102,3 @@ public class Encoder
 
 	}
 }
-
