@@ -33,7 +33,7 @@ public class Encoder
 	public Encoder () {
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
+	
 	public void encode (String fileName) throws IOException
 	{
 		try {
