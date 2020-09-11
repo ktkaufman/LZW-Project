@@ -81,7 +81,8 @@ public class Encoder
 				
 				
 			}
-			//when you reach the end
+			
+			//when you reach the end - print what you have in your prefix
 			if (prefix.length() == 1)
 			{
 				//prints the code for anything in the ascii table from index 0-127
