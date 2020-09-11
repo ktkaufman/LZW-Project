@@ -30,8 +30,10 @@ public class Encoder
 	private char c = 0; //this will represent the last char when checking a substring
 
 	//empty constructor
-	public Encoder () {
-	
+	public Encoder () 
+	{
+	}
+
 	public void encode (String fileName) throws IOException
 	{
 		try {
@@ -69,12 +71,13 @@ public class Encoder
 
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
 					{
-						code.add (table.indexOf(pattern.substring(0,pattern.length()-2))); //adds value of everything but last letter to code
+						code.add (table.indexOf(s)); //adds value of everything but last letter to code
 						writer.print(95+table.indexOf(s)); //prints the code of this pattern
 					}
+					table.add(pattern);
+					s = "" + c; // resets with only the last char of the sequence
 				}
-				table.add(pattern);
-				s = "" + c; // resets with only the last char of the sequence
+				
 			}
 
 			//save
