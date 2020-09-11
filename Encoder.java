@@ -33,6 +33,9 @@ public class Encoder
 		encodeFile(fileName);
 		generateText();
 	}
+
+
+
 	
 	public void encodeFile (String inputFileName)
 
