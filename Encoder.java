@@ -26,57 +26,67 @@ public class Encoder
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
 	String text;
-	
+
 	public Encoder () {
-		
+
 	}
-	
-	public void encodeFile (String inputFileName)
+
+	@SuppressWarnings("unlikely-arg-type")
+	public void encode (String fileName) throws IOException
 	{
-		//make file reader
-		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
+		try {
 
-		for (int i=0; i<94; i++)
-		{
-			table.add(""+(char)(i+33)); //inputs values into table
-		}
+			//make buffered reader and file reader
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
 
-		String read = ""; // String that you take in
+			//make printwriter so we can print as we encode
+			PrintWriter writer = new PrintWriter(new FileWriter(fileName  + "encoded"));
 
 
-		while (br.ready()) //read in file to code and add to input
-		{
-
-			read = read + (char) br.read(); //reads in one char
-
-			if (!table.contains(read)) //if read is not in table, it adds it to the table
+			for (int i=0; i<94; i++)
 			{
-				table.add(read);
-				code.add (table.indexOf(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
+				table.add(""+(char)(i+33)); //inputs values into table
+			}
 
-				read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
+			String read = ""; // String that you take in
+
+
+			while (br.ready()) //read in file to code and add to input
+			{
+
+				char c = (char) br.read(); //reads in one char
+				read = read + c; //adds the char onto what has been read so far
+
+
+				if (table.indexOf(read) >= 0 || read.length()==1) {
+					//		read = 
+				}
+				if ((int)read.charAt(0) <= 255) { //checks if it is already in the ascii table
+					int temp = (int)read.charAt(0);
+					code.add(temp); //adds the index to the list
+					writer.print((int)read.charAt(0));
+				}
+
+				else//if the pattern is not in table, it adds it to the table
+				{
+					table.add(read);
+					code.add (table.indexOf(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
+					writer.print(256+table.indexOf(c));
+					read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
+
+				}
 
 			}
 
+			//save
+			br.close();
+			writer.close();
+
+		}
+		catch (IOException e) {
+			System.out.println("cannot read");
 		}
 
-		//save
-		br.close();
-
 	}
-
-	public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
-	{
-		//makes a stringbuffer to loop through table
-		StringBuffer sb = new StringBuffer ("");
-		for (int key = 0; key < table.size(); key++) {
-			sb.append(table.indexOf(key));
-		}
-		PrintWriter writer = new PrintWriter(new FileWriter(outputFileName + "encoded"));
-		writer.print(sb);
-
-		writer.close();
-	}
-
-
 }
+
