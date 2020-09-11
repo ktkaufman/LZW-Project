@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+//hello
 
 /**
  *	1. read the text until we find. pattern that is not in our table
