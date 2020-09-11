@@ -22,8 +22,11 @@ public class Encoder
 	//make table that has the list of string and their value
 	ArrayList<String> table = new ArrayList<String>();
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d2d8d67ec9ba5b4cebf734daef8fb8a5be9712bc
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
@@ -32,11 +35,16 @@ public class Encoder
 	public Encoder () {
 		
 	}
+<<<<<<< HEAD
 
 
 	
 	public void encodeFile (String inputFileName) throws IOException
 
+=======
+	
+	public void encodeFile (String inputFileName)
+>>>>>>> d2d8d67ec9ba5b4cebf734daef8fb8a5be9712bc
 	{
 		try {
 		//make file reader
@@ -60,6 +68,10 @@ public class Encoder
 			{
 				table.add(read);
 				code.add (table.indexOf(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
+<<<<<<< HEAD
+=======
+
+>>>>>>> d2d8d67ec9ba5b4cebf734daef8fb8a5be9712bc
 				read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
 
 			}
@@ -76,6 +88,7 @@ public class Encoder
 
 	}
 
+<<<<<<< HEAD
 
 	StringBuffer sb = new StringBuffer ("");
 	
@@ -91,6 +104,16 @@ public class Encoder
 	{
 
 		PrintWriter writer = new PrintWriter(new FileWriter(outputFileName));
+=======
+	public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
+	{
+		//makes a stringbuffer to loop through table
+		StringBuffer sb = new StringBuffer ("");
+		for (int key = 0; key < table.size(); key++) {
+			sb.append(table.indexOf(key));
+		}
+		PrintWriter writer = new PrintWriter(new FileWriter(outputFileName + "encoded"));
+>>>>>>> d2d8d67ec9ba5b4cebf734daef8fb8a5be9712bc
 		writer.print(sb);
 
 		writer.close();
