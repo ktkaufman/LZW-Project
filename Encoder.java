@@ -72,7 +72,7 @@ public class Encoder
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
 					{
 						code.add (table.indexOf(s)); //adds value of everything but last letter to code
-						writer.print(95+table.indexOf(s)); //prints the code of this pattern
+						writer.print(128+table.indexOf(s)); //prints the code of this pattern
 					}
 					table.add(pattern);
 					s = "" + c; // resets with only the last char of the sequence
@@ -85,7 +85,8 @@ public class Encoder
 			writer.close();
 
 		}
-		catch (IOException e) {
+		catch (IOException e) 
+		{
 			System.out.println("cannot read");
 		}
 
