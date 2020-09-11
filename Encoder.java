@@ -30,7 +30,7 @@ public class Encoder
 	String text;
 
 	public Encoder (String fileName) {
-		text = fileName;
+	public Encoder () {
 	}
 
 	public void encodeFile (String inputFileName)
