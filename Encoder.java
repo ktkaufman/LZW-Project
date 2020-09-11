@@ -21,8 +21,8 @@ public class Encoder
 
 {
 
-	//make table that has the list of string and their value
-	HashSet<Integer, String> table = new HashSet<Integer, String>();
+	//make a list of strings and their values
+	ArrayList<String> table = new ArrayList<String>();
 
 
 
@@ -69,10 +69,6 @@ public class Encoder
 		//save
 		br.close();
 
-	}
-
-	public Integer whichBucket (Object obj) {
-		return obj.hashCode() &0x7FFFFFFF% this.table.length;
 	}
 
 	
