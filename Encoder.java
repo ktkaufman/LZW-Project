@@ -31,8 +31,6 @@ public class Encoder
 
 	//empty constructor
 	public Encoder () {
-	}
-
 	
 	public void encode (String fileName) throws IOException
 	{
@@ -64,7 +62,7 @@ public class Encoder
 				}
 
 				else {
-					if ((int)pattern.charAt(0) <= 95) { //checks if it is already in the ascii table
+					if ((int)pattern.charAt(0) <= 128) { //checks if it is already in the ascii table
 						code.add((int)pattern.charAt(0)); //adds the index to the list of codes
 						writer.print((int)pattern.charAt(0)); //prints the code of this pattern
 					}
