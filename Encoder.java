@@ -47,20 +47,20 @@ public class Encoder
 
 			for (int i=0; i<95; i++)
 			{
-				table.add(""+(char)(i+32)); //inputs values into table
+				table.add(""+(char)(i+32)); //inputs values into table that are already in the ascii table; began at 33rd character to avoid weird chars
 			}
 
 
 			while (br.ready()) //read in file to code and add to input
 			{
 
-				readchar = (char) br.read(); //reads in one char
+				readchar = (char) br.read(); //reads in one char from file
 				pattern = prefix + readchar; //adds the char onto what has been read so far
 
 
-				if (table.contains(pattern) || pattern.length()==1) {
-					prefix = pattern;
-					code.add((int)readchar);
+				if (table.contains(pattern) || pattern.length()==1) { //checks if the table alrady contains this pattern/if it's already part of the ascii table
+					prefix = pattern; //sets prefix to the pattern; now when pattern = prefix + readchar loops it'll include what's alrady been read
+					code.add((int)readchar); //adds the char's index to the table
 				}
 
 				else {
@@ -76,7 +76,7 @@ public class Encoder
 					}
 					
 					prefix = "" + readchar; // resets with only the last char of the sequence
-					table.add(pattern);
+					table.add(pattern); //adds this pattern to the table
 				}
 				
 				
@@ -84,13 +84,15 @@ public class Encoder
 			//when you reach the end
 			if (prefix.length() == 1)
 			{
+				//prints the code for anything in the ascii table from index 0-127
 				writer.print((int)prefix.charAt(0) );
 			}
-			else
+			else 
 			{
+				//prints the code for any pattern in the table that's been added; codes past 127
 				writer.print(128+table.indexOf(prefix));
 			}
-			//save
+			//save and close
 			br.close();
 			writer.close();
 
