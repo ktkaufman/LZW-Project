@@ -29,12 +29,11 @@ public class Encoder
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
+	String text;
+	
 	public Encoder (String fileName) {
-		encodeFile(fileName);
-		generateText();
+		text = fileName;
 	}
-
-
 
 	
 	public void encodeFile (String inputFileName)
