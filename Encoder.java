@@ -70,7 +70,7 @@ public class Encoder
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
 					{
 						code.add (table.indexOf(pattern.substring(0,pattern.length()-2))); //adds value of everything but last letter to code
-						writer.print(95+table.indexOf(c)); //prints the code of this pattern
+						writer.print(95+table.indexOf(s)); //prints the code of this pattern
 					}
 				}
 				table.add(pattern);
