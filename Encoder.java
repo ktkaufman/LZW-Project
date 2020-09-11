@@ -73,12 +73,9 @@ public class Encoder
 		
 		public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
 		{
-			HashMap<String, MyNode> list = TextGenerator.generateList(chainorder, fileName);
-
-			StringBuffer str = TextGenerator.makeText(chainorder, list, numChars);
 
 			PrintWriter writer = new PrintWriter(new FileWriter(outputFileName));
-			writer.print(str);
+			writer.print(sb);
 
 			writer.close();
 		}
