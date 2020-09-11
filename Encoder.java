@@ -19,15 +19,8 @@ public class Encoder
 
 {
 
-<<<<<<< HEAD
 	//make table that has the list of string and their value
 	ArrayList<String> table = new ArrayList<String>();
-
-
-=======
-	//make a list of strings and their values
-	ArrayList<String> table = new ArrayList<String>();
->>>>>>> e8caa5df6167763f86789695557ad87d06e0e199
 
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
@@ -36,13 +29,8 @@ public class Encoder
 	
 	public Encoder () {
 		
-=======
-
-	public Encoder (String fileName) {
-	public Encoder () {
->>>>>>> e8caa5df6167763f86789695557ad87d06e0e199
 	}
-
+	
 	public void encodeFile (String inputFileName)
 	{
 		//make file reader
@@ -64,11 +52,8 @@ public class Encoder
 			if (!table.contains(read)) //if read is not in table, it adds it to the table
 			{
 				table.add(read);
-<<<<<<< HEAD
 				code.add (table.indexOf(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
-=======
-				code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
->>>>>>> e8caa5df6167763f86789695557ad87d06e0e199
+
 				read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
 
 			}
@@ -80,19 +65,10 @@ public class Encoder
 
 	}
 
-
-<<<<<<< HEAD
-	StringBuffer sb = new StringBuffer ("");
-	
-	public void output () 
-	{
-		
-=======
 	public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
 	{
 		//makes a stringbuffer to loop through table
 		StringBuffer sb = new StringBuffer ("");
->>>>>>> e8caa5df6167763f86789695557ad87d06e0e199
 		for (int key = 0; key < table.size(); key++) {
 			sb.append(table.indexOf(key));
 		}
