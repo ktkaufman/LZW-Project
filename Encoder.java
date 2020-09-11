@@ -28,13 +28,17 @@ public class Encoder
 	
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
-
+	String fileName;
+	public TextGenerator (String inputFileName)
+	{
+		fileName = newFileName;
+	}
 
 	public void encodeFile (String inputFileName)
 	
 	{
 		//make file reader
-		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
 	
 		for (int i=0; i<94; i++)
 		{
