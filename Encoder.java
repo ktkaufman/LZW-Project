@@ -56,9 +56,9 @@ public class Encoder
 				pattern = s + c; //adds the char onto what has been read so far
 
 
-				if (table.indexOf(pattern) >= 0 || pattern.length()==1) {
-					s = pattern;
-					code.add((int)c);
+				//if (table.indexOf(pattern) >= 0 || pattern.length()==1) {
+					//s = pattern;
+					//code.add((int)c);
 				}
 
 				else {
