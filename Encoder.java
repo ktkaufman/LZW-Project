@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.HashMap;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Hashtable;
+
 
 
 /**
@@ -22,21 +22,23 @@ public class Encoder
 {
 
 	//make table that has the list of string and their value
-	Hashtable<String, Integer> table = new Hashtable<String, Integer>();
+	HashMap<Integer, String> table = new HashMap<Integer, String>();
+
 
 	
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
 
-	public Encoder (String inputFileName)
+	public void encodeFile (String inputFileName)
+	
 	{
 		//make file reader
 		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
 	
 		for (int i=0; i<94; i++)
 		{
-			table.put(""+ (char)(i+33), i); //inputs values into table
+			table.put(i,""+ (char)(i+33)); //inputs values into table
 		}
 
 		String read = ""; // String that you take in
@@ -49,8 +51,8 @@ public class Encoder
 				
 				if (!table.containsKey(read)) //if read is not in table, it adds it to the table
 				{
-					table.put(read, table.size());
-					code.add (table.keys(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
+					table.put(table.size(), read);
+					code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 					read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
 					
 				}
