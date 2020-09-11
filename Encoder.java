@@ -25,17 +25,21 @@ public class Encoder
 	HashMap<Integer, String> table = new HashMap<Integer, String>();
 
 
-	
+
 	//makes arrayList that stores LZW code
 	ArrayList<Integer> code = new ArrayList<Integer>();
 
-
-	public void encodeFile (String inputFileName)
+	public Encoder (String fileName) {
+		encodeFile(fileName);
+		generateText();
+	}
 	
+	public void encodeFile (String inputFileName)
+
 	{
 		//make file reader
 		BufferedReader br = new BufferedReader(new FileReader(inputFileName));
-	
+
 		for (int i=0; i<94; i++)
 		{
 			table.put(i,""+ (char)(i+33)); //inputs values into table
@@ -43,42 +47,47 @@ public class Encoder
 
 		String read = ""; // String that you take in
 
-		
+
 		while (br.ready()) //read in file to code and add to input
 		{
 
-				read = read + (char) br.read(); //reads in one char
-				
-				if (!table.containsKey(read)) //if read is not in table, it adds it to the table
-				{
-					table.put(table.size(), read);
-					code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
-					read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
-					
-				}
-			
+			read = read + (char) br.read(); //reads in one char
+
+			if (!table.containsKey(read)) //if read is not in table, it adds it to the table
+			{
+				table.put(table.size(), read);
+				code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
+				read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
+
+			}
+
 		}
-		
+
 		//save
 		br.close();
 
 	}
+
+	public Integer getKey () {
+		return obj.hashCode() &0x7FFFFFFF% this.table.length;
+	}
+
 	
 	public String output () {
 		StringBuffer sb = new StringBuffer ("");
 		for (int key = 0; key < table.size(); key++) {
 			sb.append(table.get(key));
 		}
-		
-		
-		public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
-		{
+	}
 
-			PrintWriter writer = new PrintWriter(new FileWriter(outputFileName));
-			writer.print(sb);
+	public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
+	{
 
-			writer.close();
-		}
+		PrintWriter writer = new PrintWriter(new FileWriter(outputFileName));
+		writer.print(sb);
 
-}
+		writer.close();
+	}
+
+
 }
