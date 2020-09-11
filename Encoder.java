@@ -72,7 +72,7 @@ public class Encoder
 		for (int key = 0; key < table.size(); key++) {
 			sb.append(table.indexOf(key));
 		}
-		PrintWriter writer = new PrintWriter(new FileWriter(outputFileName));
+		PrintWriter writer = new PrintWriter(new FileWriter(outputFileName + "encoded"));
 		writer.print(sb);
 
 		writer.close();
