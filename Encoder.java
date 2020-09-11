@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
+import java.io.PrintWriter;
 
 
 /**
@@ -69,7 +69,19 @@ public class Encoder
 		for (int key = 0; key < table.size(); key++) {
 			sb.append(table.get(key));
 		}
-		return sb.toString();
+		
+		
+		public void generateText(int chainorder, String outputFileName, int numChars) throws IOException
+		{
+			HashMap<String, MyNode> list = TextGenerator.generateList(chainorder, fileName);
+
+			StringBuffer str = TextGenerator.makeText(chainorder, list, numChars);
+
+			PrintWriter writer = new PrintWriter(new FileWriter(outputFileName));
+			writer.print(str);
+
+			writer.close();
+		}
 
 }
 }
