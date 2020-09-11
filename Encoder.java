@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.HashSet;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,7 +22,7 @@ public class Encoder
 {
 
 	//make table that has the list of string and their value
-	HashMap<Integer, String> table = new HashMap<Integer, String>();
+	HashSet<Integer, String> table = new HashSet<Integer, String>();
 
 
 
@@ -34,7 +34,10 @@ public class Encoder
 		generateText();
 	}
 
-
+public int getKey(Object obj)
+{
+	return obj.hashCode()&0x7FFFFFFF%this.buckets.length;
+}
 
 	
 	public void encodeFile (String inputFileName)
@@ -45,7 +48,7 @@ public class Encoder
 
 		for (int i=0; i<94; i++)
 		{
-			table.put(i,""+ (char)(i+33)); //inputs values into table
+			table.put((char)(i+33)); //inputs values into table
 		}
 
 		String read = ""; // String that you take in
@@ -58,7 +61,7 @@ public class Encoder
 
 			if (!table.containsKey(read)) //if read is not in table, it adds it to the table
 			{
-				table.put(table.size(), read);
+				table.put(read);
 				code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 				read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
 
