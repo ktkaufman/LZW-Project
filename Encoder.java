@@ -70,7 +70,7 @@ public class Encoder
 
 	}
 
-	public Integer getKey () {
+	public Integer whichBucket (Object obj) {
 		return obj.hashCode() &0x7FFFFFFF% this.table.length;
 	}
 
