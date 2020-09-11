@@ -26,7 +26,7 @@ public class Encoder
 	private ArrayList<Integer> code = new ArrayList<Integer>();
 
 	private String prefix = ""; 
-	private String pattern = "";
+	private String pattern = ""; // represents everything but the newest read char
 	private char readchar = 0; //this will represent the last char when checking a substring
 
 	//empty constructor
