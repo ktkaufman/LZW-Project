@@ -1,4 +1,3 @@
-import java.util.HashSet;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.io.PrintWriter;
 
 
 /**
@@ -22,7 +20,7 @@ public class Encoder
 {
 
 	//make table that has the list of string and their value
-	HashSet<Integer, String> table = new HashSet<Integer, String>();
+	ArrayList<String> table = new ArrayList<String>();
 
 
 
@@ -31,8 +29,8 @@ public class Encoder
 
 	String text;
 	
-	public Encoder (String fileName) {
-		text = fileName;
+	public Encoder () {
+		
 	}
 
 
@@ -45,7 +43,7 @@ public class Encoder
 
 		for (int i=0; i<94; i++)
 		{
-			table.put((char)(i+33)); //inputs values into table
+			table.add(""+(char)(i+33)); //inputs values into table
 		}
 
 		String read = ""; // String that you take in
@@ -56,10 +54,10 @@ public class Encoder
 
 			read = read + (char) br.read(); //reads in one char
 
-			if (!table.containsKey(read)) //if read is not in table, it adds it to the table
+			if (!table.contains(read)) //if read is not in table, it adds it to the table
 			{
-				table.put(read);
-				code.add (table.getKey(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
+				table.add(read);
+				code.add (table.indexOf(read.substring(0,read.length()-2))); //adds value of everything but last letter to code
 				read = ""+ read.substring(read.length()-1); //resets with only last char of former sequence
 
 			}
@@ -71,15 +69,14 @@ public class Encoder
 
 	}
 
-	public Integer getKey () {
-		return obj.hashCode() &0x7FFFFFFF% this.table.length;
-	}
 
+	StringBuffer sb = new StringBuffer ("");
 	
-	public String output () {
-		StringBuffer sb = new StringBuffer ("");
+	public void output () 
+	{
+		
 		for (int key = 0; key < table.size(); key++) {
-			sb.append(table.get(key));
+			sb.append(table.indexOf(key));
 		}
 	}
 
