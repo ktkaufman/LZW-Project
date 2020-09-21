@@ -12,7 +12,7 @@ import java.io.*;
 public class Encoder
 
 {
-
+	final int ASCIIMAX = 256; 
 	//make table that has the list of string and their value
 	/*
 		EDIT 1
@@ -22,7 +22,7 @@ public class Encoder
 		HashMap - add time - O(1)
 		look up + add are essential to this program, so minimize their time complexity
 	*/
-	HashMap<String, Integer> table = new HashMap<String, Integer>();
+	HashMap<String, Character> table = new HashMap<String, Character>();
 	//private ArrayList<String> table = new ArrayList<String>();
 
 	//makes arrayList that stores LZW code
@@ -55,15 +55,15 @@ public class Encoder
 
 			/*
 				EDIT 3
-				previously began at ascii character #32,' ', however it's totally possible to get a character prior to that, ex: #10,'\n'
-				edited to hold the entire unextended ascii table
+				previously started adding at ascii character #32,' ', however it's totally possible to get a character prior to that, ex: #10,'\n'
+				edited to hold the entire unextended ascii table initially
 				also, hashmap update
 			*/
 			for(int a=0; a<128; a++)
-				table.put((char)a+"", a);
+				table.put((char)a+"", (char)a);
 			/*
 				EDIT 4
-				hashmap needs a corresponding # (the LZW value)
+				arraylist has a built in # that can be used for LZW encoding (element position), but we must put down a corresponding # for the hashmap
 			*/
 			int place = 128;
 			/*for (int i=0; i<95; i++)
@@ -81,7 +81,8 @@ public class Encoder
 				/*
 					hashmap update
 				*/
-				if (table.containsKey(pattern) || pattern.length()==1) { //checks if the table alrady contains this pattern/if it's already part of the ascii table
+				if (table.containsKey(pattern) || pattern.length()==1) 
+				{ //checks if the table alrady contains this pattern/if it's already part of the ascii table
 					prefix = pattern; //sets prefix to the pattern; now when pattern = prefix + readchar loops it'll include what's alrady been read
 					//code.add((int)readchar); //adds the char's index to the table
 				}
@@ -89,7 +90,12 @@ public class Encoder
 				else {
 					if (prefix.length()==1) { //checks if it is in ascii table as a single letter
 						//code.add((int)pattern.charAt(0)); //adds the index to the list of codes
-						writer.print((int)pattern.charAt(0) + ","); //prints the code of this pattern
+						/*
+							changed the hashmap to hold Characters instead of Integers
+							no need for commas anymore bc each encoding block is 1 char
+						*/
+						writer.print(pattern.charAt(0));
+						//writer.print((int)pattern.charAt(0) + ","); //prints the code of this pattern
 					}
 
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
@@ -97,15 +103,24 @@ public class Encoder
 						//code.add (33+table.indexOf(prefix)); //adds value of everything but last letter to code
 						/*
 							hashmap update
+							no need for commas anymore bc each encoding block is 1 char
 						*/
-						writer.print(table.get(prefix) +","); //prints the code of this pattern
+						writer.print(table.get(prefix));
+						//writer.print(table.get(prefix) +","); //prints the code of this pattern
 					}
 					
 					prefix = "" + readchar; // resets with only the last char of the sequence
 					/*
 						hashmap update
+						changed the hashmap to hold Characters instead of Integers, so I capped it at 256 - extended ascii size
 					*/
-					table.put(pattern, place); //adds this pattern to the table
+					if(place<ASCIIMAX)
+						table.put(pattern, (char)place); //adds this pattern to the table
+					/*
+						bug fix from a prev push
+						forgot to add to place - don't want to link 2 seperate keys to the same value 
+					*/
+					place++;
 				}
 				
 				
@@ -115,7 +130,11 @@ public class Encoder
 			if (prefix.length() == 1)
 			{
 				//prints the code for anything in the ascii table from index 0-127
-				writer.print((int)prefix.charAt(0));
+				/*
+					converted hashmap value from Integer to Character
+				*/
+				writer.print(prefix.charAt(0));
+				//writer.print((int)prefix.charAt(0));
 			}
 			else 
 			{
