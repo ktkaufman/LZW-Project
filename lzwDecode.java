@@ -21,58 +21,66 @@ public class lzwDecode
 	{
 		// the table containing the pattern and corresponding ascii - "a" -> 'a'
 		HashMap<Character, String> table = new HashMap<Character, String>();
-		// holds the encoded message
+		// holds the decoded message
 		StringBuilder decoding = new StringBuilder("");
 
 		// fill the table with the standard ascii 1-128
 		init(table);
-		int num = 128;
+		// the first available character
+		int num = 128; 
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader(input));
 			int current = br.read();
 
+			// java doesn't allow for empty chars, so we just treat 'a' as '' bc it gets overwritten first
 			char prev='a';
 			String decodeBlock = "";
-			String holderChar = "";
+			// the first char of the previous block, used for the special case when LZW doesn't work + adding to the table
+			String prevChar = "";
+
+			// check if the first char of the encoding is in the table
+			// should always be there, just being safe (we have big problems if it isn't in the table)
 			if(table.containsKey((char)current))
 			{
 				prev = ((char)current);
-				//System.out.println("print: "+prev);
+				// add to the decoding 
 				decoding.append(table.get((char)current));
 			}
 
 			while(current != -1)
 			{
 				current = br.read();
+				// until EOF
 				if(current == -1)
 					break;
-				//System.out.println("current: "+current);
-				// current character isn't found in the table
-				// 
+
+				// current character isn't found in the table, weird lzw case
 				if(!table.containsKey((char)current))
-				{
-					//System.out.println(prev+" "+holderChar);
-					decodeBlock = table.get(prev) + holderChar;
-				}
+					// add the first char of the prev to the end of the decoded prev to find the missing value
+					decodeBlock = table.get(prev) + prevChar;
+
+				// current character is in the table!
 				if(table.containsKey((char)current))
+					//simply decode the current char
 					decodeBlock = table.get((char)current);
 
-				//System.out.println("print: "+decodeBlock);
+				// add whatever was decoded to decoding
 				decoding.append(decodeBlock);
 
-				holderChar = decodeBlock.charAt(0)+"";
-				//System.out.println("add: "+num+" "+(prev+holderChar));
+				// save first char of the decoded block
+				prevChar = decodeBlock.charAt(0)+"";
+				
+				// max 256 bc the extended ascii table ends at 255, so we can't represent anything past 255
+				// add to the table
 				if(num < 256)
-					table.put((char)num, table.get(prev)+holderChar);
+					table.put((char)num, table.get(prev)+prevChar);
 
 				// increase the next available ascii/table slot
 				num++;
+				// save the previous
 				prev = (char)current;
-				//System.out.println("prev: "+current);
-				
 			}
-			//System.out.println(table.size());
 			br.close();
 		}
 		catch(IOException e)
