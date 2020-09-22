@@ -10,9 +10,7 @@ import java.io.*;
 
 
 public class Encoder
-
 {
-	final int ASCIIMAX = 256; 
 	//make table that has the list of string and their value
 	/*
 		EDIT 1
@@ -44,7 +42,8 @@ public class Encoder
 
 	public void encode (String fileName) throws IOException
 	{
-		try {
+		try 
+		{
 
 			//make buffered reader and file reader
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -79,6 +78,7 @@ public class Encoder
 				pattern = prefix + readchar; //adds the char onto what has been read so far
 
 				/*
+					EDIT 5
 					hashmap update
 				*/
 				if (table.containsKey(pattern) || pattern.length()==1) 
@@ -91,6 +91,7 @@ public class Encoder
 					if (prefix.length()==1) { //checks if it is in ascii table as a single letter
 						//code.add((int)pattern.charAt(0)); //adds the index to the list of codes
 						/*
+							EDIT 6
 							changed the hashmap to hold Characters instead of Integers
 							no need for commas anymore bc each encoding block is 1 char
 						*/
@@ -100,21 +101,25 @@ public class Encoder
 
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
 					{
-						//code.add (33+table.indexOf(prefix)); //adds value of everything but last letter to code
+						
 						/*
+							EDIT 7
 							hashmap update
 							no need for commas anymore bc each encoding block is 1 char
+							removed code
 						*/
+						//code.add (33+table.indexOf(prefix)); //adds value of everything but last letter to code
 						writer.print(table.get(prefix));
 						//writer.print(table.get(prefix) +","); //prints the code of this pattern
 					}
 					
 					prefix = "" + readchar; // resets with only the last char of the sequence
 					/*
+						EDIT 8
 						hashmap update
 						changed the hashmap to hold Characters instead of Integers, so I capped it at 256 - extended ascii size
 					*/
-					if(place<ASCIIMAX)
+					if(place<256)
 						table.put(pattern, (char)place); //adds this pattern to the table
 					/*
 						bug fix from a prev push
@@ -131,6 +136,7 @@ public class Encoder
 			{
 				//prints the code for anything in the ascii table from index 0-127
 				/*
+					EDIT 9
 					converted hashmap value from Integer to Character
 				*/
 				writer.print(prefix.charAt(0));
@@ -140,6 +146,7 @@ public class Encoder
 			{
 				//prints the code for any pattern in the table that's been added; codes past 127
 				/*
+					EDIT 10
 					hashmap update
 				*/
 				writer.print(table.get(prefix));
