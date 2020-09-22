@@ -72,8 +72,10 @@ public class lzwDecode
 				prevChar = decodeBlock.charAt(0)+"";
 				
 				// max 256 bc the extended ascii table ends at 255, so we can't represent anything past 255
+				// update: changed it to 55296
+				// max should be 65536 bc in utf - 8 1 char is maxxed at 65536, but bc of some weird utf rule, we're capped at 55296
 				// add to the table
-				if(num < 256)
+				if(num < 55296)
 					table.put((char)num, table.get(prev)+prevChar);
 
 				// increase the next available ascii/table slot
