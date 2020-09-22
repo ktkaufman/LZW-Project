@@ -118,8 +118,10 @@ public class Encoder
 						EDIT 8
 						hashmap update
 						changed the hashmap to hold Characters instead of Integers, so I capped it at 256 - extended ascii size
+						update: changed it to 55296
+						max should be 65536 bc in utf - 8 1 char is maxxed at 65536, but bc of some weird utf rule, we're capped at 55296
 					*/
-					if(place<256)
+					if(place<55296)
 						table.put(pattern, (char)place); //adds this pattern to the table
 					/*
 						bug fix from a prev push
