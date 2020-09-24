@@ -20,7 +20,7 @@ public class Encoder
 		HashMap - add time - O(1)
 		look up + add are essential to this program, so minimize their time complexity
 	*/
-	 HashMap<HashMap<String, Charecter>,int> table=new HashMap<HashMap<String, Charecter>,int>();
+	 HashMap<HashMap<String, Character>, Integer> table=new HashMap<HashMap<String, Character>, Integer>();
 	//private ArrayList<String> table = new ArrayList<String>();
 
 	//makes arrayList that stores LZW code
@@ -175,6 +175,15 @@ public class Encoder
 	{
 		int minValue = 0;
 		int index = 0;
-		int[] timesUsed = (table.values().toArray();
+		Integer[] timesUsed = (Integer[]) (table.values().toArray());
+		for (int i = 0; i<timesUsed.length; i++)
+		{
+			if (timesUsed[i]<minValue)
+			{
+				minValue = timesUsed[i];
+				index = i;
+			}
+		}
+		return index;
 	}
 }
