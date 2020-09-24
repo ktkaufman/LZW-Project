@@ -90,44 +90,21 @@ public class Encoder
 				else {
 					if (prefix.length()==1) { //checks if it is in ascii table as a single letter
 						//code.add((int)pattern.charAt(0)); //adds the index to the list of codes
-						/*
-							EDIT 6
-							changed the hashmap to hold Characters instead of Integers
-							no need for commas anymore bc each encoding block is 1 char
-						*/
 						writer.print(pattern.charAt(0));
 						//writer.print((int)pattern.charAt(0) + ","); //prints the code of this pattern
 					}
 
 					else//if the pattern is not in table, it adds it to the table. also print this pattern
 					{
-						
-						/*
-							EDIT 7
-							hashmap update
-							no need for commas anymore bc each encoding block is 1 char
-							removed code
-						*/
 						//code.add (33+table.indexOf(prefix)); //adds value of everything but last letter to code
 						writer.print(table.get(prefix));
 						//writer.print(table.get(prefix) +","); //prints the code of this pattern
 					}
 					
 					prefix = "" + readchar; // resets with only the last char of the sequence
-					/*
-						EDIT 8
-						hashmap update
-						changed the hashmap to hold Characters instead of Integers, so I capped it at 256 - extended ascii size
-						update: changed it to 55296
-						max should be 65536 bc in utf - 8 1 char is maxxed at 65536, but bc of some weird utf rule, we're capped at 55296
-					*/
 					if(place<55296)
 					{
 						table.put(pattern, (char)place); //adds this pattern to the table
-					/*
-						bug fix from a prev push
-						forgot to add to place - don't want to link 2 seperate keys to the same value 
-					*/
 					place++;
 					}
 					else
@@ -143,24 +120,12 @@ public class Encoder
 			//when you reach the end - print what you have in your prefix
 			if (prefix.length() == 1)
 			{
-				//prints the code for anything in the ascii table from index 0-127
-				/*
-					EDIT 9
-					converted hashmap value from Integer to Character
-				*/
 				writer.print(prefix.charAt(0));
-				//writer.print((int)prefix.charAt(0));
 			}
 			else 
 			{
-				//prints the code for any pattern in the table that's been added; codes past 127
-				/*
-					EDIT 10
-					hashmap update
-				*/
 				writer.print(table.get(prefix));
 			}
-			//save and close
 			br.close();
 			writer.close();
 
