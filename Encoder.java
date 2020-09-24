@@ -122,12 +122,19 @@ public class Encoder
 						max should be 65536 bc in utf - 8 1 char is maxxed at 65536, but bc of some weird utf rule, we're capped at 55296
 					*/
 					if(place<55296)
+					{
 						table.put(pattern, (char)place); //adds this pattern to the table
 					/*
 						bug fix from a prev push
 						forgot to add to place - don't want to link 2 seperate keys to the same value 
 					*/
 					place++;
+					}
+					else
+					{
+						table.put(pattern, (char)clearCashe()); //adds this pattern to the table
+						
+					}
 				}
 				
 				
@@ -163,5 +170,11 @@ public class Encoder
 			System.out.println("cannot read");
 		}
 
+	}
+	public int clearCashe()//returns index of code removed
+	{
+		int minValue = 0;
+		int index = 0;
+		int[] timesUsed = (table.values().toArray();
 	}
 }
