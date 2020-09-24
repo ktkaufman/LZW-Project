@@ -1,13 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-
 /*
  	1. read the text until we find. pattern that is not in our table
 	2. put that pattern into the table, output the code for everything BUT the last letter of that new pattern
 	3. reset to only include what we have not output a code for
  */
-
 
 public class Encoder
 {
@@ -107,11 +105,6 @@ public class Encoder
 						table.put(pattern, (char)place); //adds this pattern to the table
 					place++;
 					}
-					else
-					{
-						table.put(pattern, (char)clearCashe()); //adds this pattern to the table
-						
-					}
 				}
 				
 				
@@ -135,20 +128,5 @@ public class Encoder
 			System.out.println("cannot read");
 		}
 
-	}
-	public int clearCashe()//returns index of code removed
-	{
-		int minValue = 0;
-		int index = 0;
-		Integer[] timesUsed = (Integer[]) (table.values().toArray());
-		for (int i = 0; i<timesUsed.length; i++)
-		{
-			if (timesUsed[i]<minValue)
-			{
-				minValue = timesUsed[i];
-				index = i;
-			}
-		}
-		return index;
 	}
 }
