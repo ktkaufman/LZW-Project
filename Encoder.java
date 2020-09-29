@@ -144,7 +144,7 @@ public class Encoder
 	{
 		if (table.containsKey(code));//checks if their are duplicates
 		{
-			linkedList.remove(code);
+			linkedList.remove(code);//removes duplicates
 		}
 		linkedList.add(code);
 	}
