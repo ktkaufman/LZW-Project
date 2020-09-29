@@ -32,7 +32,7 @@ public class Encoder
 	private String prefix = ""; 
 	private String pattern = ""; // represents everything but the newest read char
 	private char readchar = 0; //this will represent the last char when checking a substring
-
+	private LinkedList linkedList = new LinkedList();
 	//empty constructor
 	public Encoder () 
 	{
