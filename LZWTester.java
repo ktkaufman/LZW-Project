@@ -1,9 +1,12 @@
 import java.util.*;
 import java.io.*;
 
-public class LZWTester
-{
-	Encoder jake = new Encoder();
-	jake.encode("inputTest.txt");
-	lzwDecode(String,String) alsoJake=new lzwDecode("testencoded","testdecoded");
+public class LZWTester {
+	public static void main (String [] args) throws IOException
+	{
+		Encoder jake = new Encoder();
+		jake.encode("test");
+		lzwDecode alsoJake = new lzwDecode();
+		alsoJake.decode("test","testdecoded");
+	}
 }
