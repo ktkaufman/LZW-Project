@@ -57,7 +57,10 @@ public class Encoder
 				also, hashmap update
 			*/
 			for(int a=0; a<128; a++)
+			{
+				linkedList.add(""+((char)a));
 				table.put((char)a+"", (char)a);
+			}
 			/*
 				EDIT 4
 				arraylist has a built in # that can be used for LZW encoding (element position), but we must put down a corresponding # for the hashmap
