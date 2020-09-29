@@ -4,12 +4,13 @@ import java.io.*;
 public class lzwDecode
 {
 	private static HashMap<Character, String> table = new HashMap<Character, String>();
-	private LinkedList linkedList = new LinkedList();
+	private static LinkedList linkedList = new LinkedList();
 	public static HashMap<Character,String> init(HashMap<Character,String> table)
 	{
 		// fill the table with the standard ascii 1-128
 		for(int a = 0; a < 128; a++)
 		{
+			linkedList.add(""+(char)a);
 			char current = (char)(a);
 			// (corresponding ascii (char) + pattern (string))
 			// reversed from prev bc i'm pretty sure containsValue is O(N) while containsKey is O(1)
@@ -78,6 +79,7 @@ public class lzwDecode
 				// add to the table
 				if(num < 55296)
 				{
+					addCode(table.get(prev)+prevChar);
 					table.put((char)num, table.get(prev)+prevChar);
 
 				// increase the next available ascii/table slot
@@ -85,7 +87,10 @@ public class lzwDecode
 				}
 				else
 				{
-					
+					table.remove(linkedList.get(0));
+					linkedList.remove(0);
+					addCode(table.get(prev)+prevChar);
+					table.put((char)num, table.get(prev)+prevChar);
 				}
 				// save the previous
 				prev = (char)current;
@@ -110,7 +115,7 @@ public class lzwDecode
 		}
 		
 	}
-	public void addCode(String code)//checks the list to remove duplicates and adds the most recent code to the back
+	public static void addCode(String code)//checks the list to remove duplicates and adds the most recent code to the back
 	{
 		if (table.containsValue(code));//checks if their are duplicates
 		{
