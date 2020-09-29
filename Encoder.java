@@ -129,4 +129,12 @@ public class Encoder
 		}
 
 	}
+	public void addCode(String code)
+	{
+		if (table.containsKey(code));
+		{
+			linkedList.remove(code);
+		}
+		linkedList.add(code);
+	}
 }
