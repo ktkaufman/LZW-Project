@@ -3,6 +3,8 @@ import java.io.*;
 
 public class lzwDecode
 {
+	private static HashMap<Character, String> table = new HashMap<Character, String>();
+	private LinkedList linkedList = new LinkedList();
 	public static HashMap<Character,String> init(HashMap<Character,String> table)
 	{
 		// fill the table with the standard ascii 1-128
@@ -19,8 +21,7 @@ public class lzwDecode
 
 	public static void decode (String input, String output) 
 	{
-		// the table containing the pattern and corresponding ascii - "a" -> 'a'
-		HashMap<Character, String> table = new HashMap<Character, String>();
+		
 		// holds the decoded message
 		StringBuilder decoding = new StringBuilder("");
 
@@ -76,10 +77,16 @@ public class lzwDecode
 				// max should be 65536 bc in utf - 8 1 char is maxxed at 65536, but bc of some weird utf rule, we're capped at 55296
 				// add to the table
 				if(num < 55296)
+				{
 					table.put((char)num, table.get(prev)+prevChar);
 
 				// increase the next available ascii/table slot
 				num++;
+				}
+				else
+				{
+					
+				}
 				// save the previous
 				prev = (char)current;
 			}
@@ -101,5 +108,14 @@ public class lzwDecode
 		{
 			System.out.println("IOException");
 		}
+		
+	}
+	public void addCode(String code)//checks the list to remove duplicates and adds the most recent code to the back
+	{
+		if (table.containsValue(code));//checks if their are duplicates
+		{
+			linkedList.remove(code);//removes duplicates
+		}
+		linkedList.add(code);
 	}
 }
