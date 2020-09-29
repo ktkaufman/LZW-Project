@@ -18,7 +18,7 @@ public class Encoder
 		HashMap - add time - O(1)
 		look up + add are essential to this program, so minimize their time complexity
 	*/
-	 HashMap<HashMap<String, Character>, Integer> table=new HashMap<HashMap<String, Character>, Integer>();
+	 HashMap<String, Character> table=new HashMap<String, Character>();
 	//private ArrayList<String> table = new ArrayList<String>();
 
 	//makes arrayList that stores LZW code
@@ -105,8 +105,14 @@ public class Encoder
 					prefix = "" + readchar; // resets with only the last char of the sequence
 					if(place<55296)
 					{
+						addCode(pattern);
 						table.put(pattern, (char)place); //adds this pattern to the table
 					place++;
+					}
+					else
+					{
+						linkedList.remove(0);
+						table.put(pattern, (char)place); //adds this pattern to the table
 					}
 				}
 				
