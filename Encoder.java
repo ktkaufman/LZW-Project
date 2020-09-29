@@ -111,7 +111,9 @@ public class Encoder
 					}
 					else
 					{
+						table.remove(linkedList.get(0));//removes least recently used code
 						linkedList.remove(0);
+						addCode(pattern);
 						table.put(pattern, (char)place); //adds this pattern to the table
 					}
 				}
@@ -138,9 +140,9 @@ public class Encoder
 		}
 
 	}
-	public void addCode(String code)
+	public void addCode(String code)//checks the list to remove duplicates and adds the most recent code to the back
 	{
-		if (table.containsKey(code));
+		if (table.containsKey(code));//checks if their are duplicates
 		{
 			linkedList.remove(code);
 		}
