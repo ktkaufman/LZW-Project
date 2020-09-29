@@ -91,6 +91,7 @@ public class lzwDecode
 					linkedList.remove(0);
 					addCode(table.get(prev)+prevChar);
 					table.put((char)num, table.get(prev)+prevChar);
+					num++;
 				}
 				// save the previous
 				prev = (char)current;
