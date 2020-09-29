@@ -115,6 +115,7 @@ public class Encoder
 						linkedList.remove(0);
 						addCode(pattern);
 						table.put(pattern, (char)place); //adds this pattern to the table
+						place++;
 					}
 				}
 				
