@@ -20,7 +20,7 @@ public class lzwDecode
 		return table;
 	}
 
-	public static void decode (String input, String output) 
+	public static void decode (String input, String output) throws IOException 
 	{
 		
 		// holds the decoded message
