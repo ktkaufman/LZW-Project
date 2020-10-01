@@ -98,18 +98,6 @@ public class lzwDecode
 				prev = (char)current;
 			}
 			br.close();
-		}
-		catch(IOException e)
-		{
-			System.out.println("IOException");
-		}
-		try
-		{
-			//BufferedWriter bw = new BufferedWriter(new FileWriter(output));
-			// write out the decoding
-			//bw.write(decoding.toString());
-			//System.out.println(decoding.toString());
-			bw.close();
 			writer.close();
 		}
 		catch(IOException e)
