@@ -25,7 +25,7 @@ public class lzwDecode
 		
 		// holds the decoded message
 		StringBuilder decoding = new StringBuilder("");
-
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFile)));
 		// fill the table with the standard ascii 1-128
 		init(table);
 		// the first available character
@@ -47,7 +47,8 @@ public class lzwDecode
 			{
 				prev = ((char)current);
 				// add to the decoding 
-				decoding.append(table.get((char)current));
+				//decoding.append(table.get((char)current));
+				writer.write(table.get((char)current));
 			}
 
 			while(current != -1)
@@ -68,8 +69,8 @@ public class lzwDecode
 					decodeBlock = table.get((char)current);
 
 				// add whatever was decoded to decoding
-				decoding.append(decodeBlock);
-
+				//decoding.append(decodeBlock);
+				writer.write(decodeBlock);
 				// save first char of the decoded block
 				prevChar = decodeBlock.charAt(0)+"";
 				
@@ -104,11 +105,12 @@ public class lzwDecode
 		}
 		try
 		{
-			BufferedWriter bw = new BufferedWriter(new FileWriter(output));
+			//BufferedWriter bw = new BufferedWriter(new FileWriter(output));
 			// write out the decoding
-			bw.write(decoding.toString());
+			//bw.write(decoding.toString());
 			//System.out.println(decoding.toString());
 			bw.close();
+			writer.close();
 		}
 		catch(IOException e)
 		{
