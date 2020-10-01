@@ -25,7 +25,7 @@ public class lzwDecode
 		
 		// holds the decoded message
 		StringBuilder decoding = new StringBuilder("");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFile)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(output)));
 		// fill the table with the standard ascii 1-128
 		init(table);
 		// the first available character
