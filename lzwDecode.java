@@ -24,14 +24,15 @@ public class lzwDecode
 	{
 		
 		// holds the decoded message
-		StringBuilder decoding = new StringBuilder("");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(output)));
+		//StringBuilder decoding = new StringBuilder("");
+		
 		// fill the table with the standard ascii 1-128
 		init(table);
 		// the first available character
 		int num = 128; 
 		try
 		{
+			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(output)));
 			BufferedReader br = new BufferedReader(new FileReader(input));
 			int current = br.read();
 
