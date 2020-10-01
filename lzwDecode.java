@@ -79,7 +79,7 @@ public class lzwDecode
 				// update: changed it to 55296
 				// max should be 65536 bc in utf - 8 1 char is maxxed at 65536, but bc of some weird utf rule, we're capped at 55296
 				// add to the table
-				if(num < 55296)
+				if(num < 1000)
 				{
 					addCode(table.get(prev)+prevChar);
 					table.put((char)num, table.get(prev)+prevChar);
