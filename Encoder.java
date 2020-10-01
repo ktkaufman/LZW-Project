@@ -60,6 +60,7 @@ public class Encoder
 			{
 				linkedList.add(""+((char)a));
 				table.put((char)a+"", (char)a);
+				
 			}
 			/*
 				EDIT 4
@@ -103,7 +104,7 @@ public class Encoder
 					}
 					
 					prefix = "" + readchar; // resets with only the last char of the sequence
-					if(place<55296)
+					if(place<1000)
 					{
 						addCode(pattern);
 						table.put(pattern, (char)place); //adds this pattern to the table
